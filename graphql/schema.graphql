@@ -2,8 +2,19 @@
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
+    me: User
     users: [User!]! @all
-    user(id: ID @eq): User @find
+    userById(id: ID @eq): User @find
+}
+
+type Mutation {
+  createUser(name: String!, email: String!, password: String!): User
+  updateUser(id: ID, email: String, password: String): User
+  deleteUser(id: ID): User
+}
+
+type Subscription {
+  newUser: User
 }
 
 type User {
