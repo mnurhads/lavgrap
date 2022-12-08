@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateAlamatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('alamats', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('alamat_id')->unsigned()->index();
-            $table->string('supervisor', 50);
-            $table->string('position', 50);
-            $table->enum('status_employee', ['0', '1', '2']);
+            $table->string('alamat', 150)->nullable();
+            $table->string('kelurahan', 50)->nullable();
+            $table->string('kecamatan', 50)->nullable();
+            $table->string('kota', 50)->nullable();
+            $table->string('provinsi', 50)->nullable();
+            $table->enum('status', ['1', '2'])->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
@@ -36,6 +36,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('alamats');
     }
 }

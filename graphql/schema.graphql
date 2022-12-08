@@ -15,11 +15,14 @@ type Query{
     employeeDetail(id: ID @eq): Employee @find
 }
 
+# ENUM STATUS
 enum EmploymentStatus {
   INTERN @enum(value: 0)
   EMPLOYEE @enum(value: 1)
   TERMINATED @enum(value: 2)
 }
+
+# END ENUM
 
 type Mutation {
   createUser(name: String!, email: String!, password: String!): User
@@ -40,11 +43,23 @@ type User {
     updated_at: DateTime!
 }
 
+# new
+type Alamat {
+  id: ID!
+  alamat: String!
+  kelurahan: String!
+  kecamatan: String!
+  kota: String!
+  provinsi: String!
+  status: Int!
+}
+
 type Employee {
   id: ID!
   user: [User!]! @hasMany
   supervisor: String!
   position: String!
   status_employee: EmploymentStatus!
+  alamat: [Alamat!]! @hasMany
   created_at: DateTime!
 }
