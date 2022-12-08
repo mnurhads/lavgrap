@@ -22,7 +22,7 @@ class Employee extends Model
     }
 
     public function alamat(){
-        return $this->belongsTo('App\Models\Alamat','id','alamat_id');
+        return $this->hasMany('App\Models\Alamat','id');
     }
 
 }

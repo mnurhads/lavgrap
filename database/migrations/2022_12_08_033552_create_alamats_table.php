@@ -15,7 +15,7 @@ class CreateAlamatsTable extends Migration
     {
         Schema::create('alamats', function (Blueprint $table) {
             $table->id();
-            $table->string('alamat', 150)->nullable();
+            $table->string('alamat_detail', 150)->nullable();
             $table->string('kelurahan', 50)->nullable();
             $table->string('kecamatan', 50)->nullable();
             $table->string('kota', 50)->nullable();

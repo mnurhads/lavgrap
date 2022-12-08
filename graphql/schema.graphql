@@ -22,6 +22,11 @@ enum EmploymentStatus {
   TERMINATED @enum(value: 2)
 }
 
+enum AlamatStatus {
+  AKTIF @enum(value: 1)
+  NONAKTIF @enum(value: 2)
+}
+
 # END ENUM
 
 type Mutation {
@@ -46,12 +51,12 @@ type User {
 # new
 type Alamat {
   id: ID!
-  alamat: String!
+  alamat_detail: String!
   kelurahan: String!
   kecamatan: String!
   kota: String!
   provinsi: String!
-  status: Int!
+  status: AlamatStatus!
 }
 
 type Employee {

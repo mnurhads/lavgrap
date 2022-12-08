@@ -10,7 +10,7 @@ class Alamat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'alamat',
+        'alamat_detail',
         'kelurahan',
         'kecamatan',
         'kota',
@@ -19,6 +19,6 @@ class Alamat extends Model
     ];
 
     public function employee(){
-        return $this->hasMany('App\Models\Employee','id','alamat_id');
+        return $this->belongsTo('App\Models\Employee','alamat_id');
     }
 }
