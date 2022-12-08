@@ -1,16 +1,30 @@
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-type Query {
-    me: User
-    users: [User!]! @all
-    userById(id: ID @eq): User @find
+# type Query {
+#     me: User
+#     users: [User!]! @all
+#     userById(id: ID @eq): User @find
+# }
+
+# wa pondokmedia => +347347342, info => (021) 54353275
+
+type Query{
+    me: Employee
+    employee: [Employee!]! @paginate(defaultCount: 10)
+    employeeDetail(id: ID @eq): Employee @find
+}
+
+enum EmploymentStatus {
+  INTERN @enum(value: 0)
+  EMPLOYEE @enum(value: 1)
+  TERMINATED @enum(value: 2)
 }
 
 type Mutation {
   createUser(name: String!, email: String!, password: String!): User
-  updateUser(id: ID, email: String, password: String): User
-  deleteUser(id: ID): User
+  # updateUser(id: ID, email: String, password: String): User
+  # deleteUser(id: ID): User
 }
 
 type Subscription {
@@ -24,4 +38,13 @@ type User {
     email_verified_at: DateTime
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+type Employee {
+  id: ID!
+  user: [User!]! @hasMany
+  supervisor: String!
+  position: String!
+  status_employee: EmploymentStatus!
+  created_at: DateTime!
 }

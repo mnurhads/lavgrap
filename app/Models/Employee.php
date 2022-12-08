@@ -10,8 +10,14 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fullname',
+        'user_id',
+        'supervisor',
         'position',
         'status_employee',
     ];
+
+    public function user(){
+        return $this->hasMany('App\Models\User','id','user_id');
+    }
+
 }

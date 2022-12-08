@@ -15,7 +15,9 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname', 50);
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('user_up', 50);
             $table->string('position', 50);
             $table->enum('status_employee', ['0', '1', '2']);
             $table->timestamp('created_at')->useCurrent();
